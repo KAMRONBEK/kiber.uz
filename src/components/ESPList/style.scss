@@ -1,0 +1,267 @@
+@media screen and (min-width: 1024px) {
+  .ESPList {
+    height: calc(100vh - 250px);
+    padding-right: 30px;
+    overflow: auto;
+
+    .esp-block {
+      padding: 20px 70px 20px 20px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 16px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition-duration: 0.3s;
+      position: relative;
+      overflow: hidden;
+      background-color: #fff;
+
+      .row {
+        line-height: 30px;
+        font-size: 18px;
+        color: #676769;
+
+        .label {
+          color: #000;
+          font-size: 18px;
+          font-weight: bold;
+          margin-right: 20px;
+        }
+      }
+
+      .right-slider {
+        position: absolute;
+        height: 100%;
+        right: 0;
+        top: 0;
+        width: 50px;
+        background-color: #3f68ba;
+        transform: translateX(50px);
+        transition-duration: 0.3s;
+      }
+
+      &:hover {
+        border-color: #3f68ba;
+
+        .label {
+          color: #3f68ba;
+        }
+      }
+
+      &.selected {
+        border-color: #3f68ba;
+
+        .label {
+          color: #3f68ba;
+        }
+
+        .right-slider {
+          transform: translateX(0);
+        }
+      }
+
+      &.expired {
+        border-color: silver !important;
+        cursor: not-allowed;
+
+        .row {
+          color: silver;
+
+          &.date-row {
+            color: #cc0000;
+          }
+        }
+
+        &:hover {
+          border-color: silver;
+
+          .label {
+            color: silver;
+          }
+
+          & .date-row .label {
+            color: #cc0000;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .ESPList {
+    height: calc(100vh - 200px);
+    padding: 20px;
+    overflow: auto;
+
+    .esp-block {
+      padding: 10px 10px 10px 15px;
+      width: 100%;
+      border: 2px solid silver;
+      border-radius: 20px;
+      margin-bottom: 30px;
+      cursor: pointer;
+      transition-duration: 0.3s;
+      position: relative;
+      overflow: hidden;
+
+      .row {
+        line-height: 25px;
+        font-size: 16px;
+
+        .value {
+          font-size: 14px;
+        }
+
+        .label {
+          // color: #5D35B1;
+          font-weight: bold;
+          margin-right: 8px;
+        }
+      }
+
+      .right-slider {
+        position: absolute;
+        height: 100%;
+        right: 0;
+        top: 0;
+        width: 50px;
+        background-color: #3f68ba;
+        transform: translateX(50px);
+        transition-duration: 0.3s;
+      }
+
+      &:hover {
+        border-color: #5d35b1;
+
+        .label {
+          color: #5d35b1;
+        }
+      }
+
+      &.selected {
+        border-color: #3f68ba;
+
+        .label {
+          color: #3f68ba;
+        }
+
+        .right-slider {
+          transform: translateX(0);
+        }
+      }
+
+      &.expired {
+        border-color: silver !important;
+        cursor: not-allowed;
+
+        .row {
+          color: silver;
+
+          &.date-row {
+            color: #cc0000;
+          }
+        }
+
+        &:hover {
+          border-color: silver;
+
+          .label {
+            color: silver;
+          }
+
+          & .date-row .label {
+            color: #cc0000;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .ESPList {
+    height: calc(100vh - 250px);
+    padding: 0 20px;
+    overflow: auto;
+
+    .esp-block {
+      padding: 20px 70px 20px 20px;
+      width: 100%;
+      border: 2px solid silver;
+      border-radius: 20px;
+      margin-bottom: 30px;
+      cursor: pointer;
+      transition-duration: 0.3s;
+      position: relative;
+      overflow: hidden;
+
+      .row {
+        line-height: 30px;
+        font-size: 20px;
+
+        .label {
+          // color: #5D35B1;
+          font-weight: bold;
+          margin-right: 15px;
+        }
+      }
+
+      .right-slider {
+        position: absolute;
+        height: 100%;
+        right: 0;
+        top: 0;
+        width: 50px;
+        background-color: #3f68ba;
+        transform: translateX(50px);
+        transition-duration: 0.3s;
+      }
+
+      &:hover {
+        border-color: #5d35b1;
+
+        .label {
+          color: #5d35b1;
+        }
+      }
+
+      &.selected {
+        border-color: #3f68ba;
+
+        .label {
+          color: #3f68ba;
+        }
+
+        .right-slider {
+          transform: translateX(0);
+        }
+      }
+
+      &.expired {
+        border-color: silver !important;
+        cursor: not-allowed;
+
+        .row {
+          color: silver;
+
+          &.date-row {
+            color: #cc0000;
+          }
+        }
+
+        &:hover {
+          border-color: silver;
+
+          .label {
+            color: silver;
+          }
+
+          & .date-row .label {
+            color: #cc0000;
+          }
+        }
+      }
+    }
+  }
+}
