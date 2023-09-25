@@ -1,0 +1,444 @@
+
+
+.containerFactura {
+    width: 100%;
+    padding: 40px 20px;
+    .old-factura-block {
+        margin: 30px 0 50px 0;
+        border: 1px solid silver;
+        display: inline-block;
+        padding: 30px;
+        background-color: rgba(192, 192, 192, 0.192);
+    }
+    
+    .info-block {
+        display: flex;
+        margin-bottom: 30px;
+        width: 100%;
+    }
+    
+    .info-block .seller-side {
+        flex: 1;
+        padding-right: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .info-block .buyer-side {
+        flex: 1;
+        padding-left: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .info-block .single-side {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 20px;
+    }
+    
+    .single-side-type-block {
+        padding: 30px;
+        border: 1px solid silver;
+    }
+    
+    .label {
+        font-weight: bold;
+    }
+    
+    .value {
+        width: 100%;
+        border-bottom: 1px solid #000;
+        display: flex;
+        align-items: center;
+    }
+    .title {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 50px;
+    }
+    
+    .title p {
+        font-size: 20px;
+        line-height: 30px;
+        font-weight: 600;
+    }
+    
+    .description {
+        text-indent: 20px;
+        margin-bottom: 30px;
+    }
+    
+    table {
+        border: 1px solid #000000;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+    }
+    
+    table th,
+    td {
+        border: 1px solid #000000;
+        padding: 2px 10px;
+    }
+    
+    table td {
+        text-align: right;
+    }
+    
+    table td.center {
+        text-align: center;
+    }
+    
+    .bold {
+        font-weight: bold;
+    }
+    
+    .humans-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .humans {
+        margin-top: 30px;
+        width: 100%;
+    }
+    
+    .humans p {
+        margin-bottom: 30px;
+    }
+}
+
+.containerAct {
+    width: 100%;
+    padding: 40px 20px;
+    
+  
+    .title {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 50px;
+    }
+    
+    .title p {
+      font-size: 20px;
+      line-height: 30px;
+      font-weight: 600;
+    }
+    
+    .description {
+      text-indent: 20px;
+      margin-bottom: 30px;
+    }
+    
+    table {
+      border: 1px solid #000000;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+    
+    table th,
+    td {
+      border: 1px solid #000000;
+      padding: 2px 10px;
+    }
+    
+    table td {
+      text-align: right;
+    }
+    
+    table td.center {
+      text-align: center;
+    }
+    
+    .bold {
+      font-weight: bold;
+    }
+    
+    .humans {
+      margin-top: 30px;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+  
+  
+  .containerEmp {
+    width: 100%;
+    padding: 40px 20px;
+    .title {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 50px;
+    }
+    
+    .title p {
+        font-size: 20px;
+        line-height: 30px;
+        font-weight: 600;
+    }
+    
+    .info-block {
+        margin-bottom: 50px;
+    }
+    
+    .info-block .row {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .info-block .row p {
+        flex: 1;
+        margin: 0 10px;
+    }
+    
+    .info-block .row p.bold {
+        text-align: right;
+    }
+    
+    .description {
+        text-indent: 20px;
+        margin-bottom: 30px;
+    }
+    
+    table {
+        border: 1px solid #000000;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+    }
+    
+    table th,
+    td {
+        border: 1px solid #000000;
+        padding: 2px 10px;
+    }
+    
+    table td {
+        text-align: right;
+    }
+    
+    table td.center {
+        text-align: center;
+    }
+    
+    .bold {
+        font-weight: bold;
+    }
+}
+
+.containerWaybill {
+    width: 100%;
+    padding: 40px 20px;
+    
+  
+    .title {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 50px;
+    }
+    
+    .title p {
+      font-size: 20px;
+      line-height: 30px;
+      font-weight: 600;
+       margin-top:25px;
+    }
+    
+    .description {
+      text-indent: 20px;
+      margin-bottom: 30px;
+    }
+    
+    table {
+      border: 1px solid #000000;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+    
+    table th,
+    td {
+      border: 1px solid #000000;
+      padding: 2px 10px;
+    }
+    
+    table td {
+      text-align: right;
+    }
+    
+    table td.center {
+      text-align: center;
+    }
+    
+    .bold {
+      font-weight: bold;
+    }
+    
+    .flex{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+    }
+  }
+
+  .containerChecked {
+    width: 100%;
+    padding: 40px 20px;
+    .title {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 50px;
+    }
+  
+    .title p {
+      font-size: 20px;
+      line-height: 30px;
+      font-weight: 600;
+    }
+  
+    .description {
+      text-indent: 20px;
+      margin-bottom: 30px;
+    }
+  
+    table {
+      border: 1px solid #000000;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+  
+    table th,
+    td {
+      border: 1px solid #000000;
+      padding: 2px 10px;
+    }
+  
+    table td {
+      text-align: right;
+    }
+  
+    table td.center {
+      text-align: center;
+    }
+  
+    .bold {
+      font-weight: bold;
+    }
+  
+    .humans {
+      margin-top: 30px;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+
+  .info-block {
+    margin-bottom: 30px;
+    text-indent: 50px;
+}
+
+
+
+.containerContract {
+    width: 100%;
+    padding: 40px 20px;
+    .title {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 50px;
+  }
+  .single-side-type-block {
+    padding: 30px;
+    border: 1px solid silver;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.value {
+    width: 100%;
+    border-bottom: 1px solid #000;
+    display: flex;
+    align-items: center;
+}
+
+
+  .part-title {
+      text-align: center;
+      margin: 20px 0;
+  }
+  
+  .title p,
+  .subtitle p {
+      font-size: 20px;
+      line-height: 30px;
+      font-weight: 600;
+  }
+  
+  .subtitle {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 50px;
+  }
+  
+  .description {
+      text-indent: 20px;
+      margin-bottom: 30px;
+  }
+  
+  table {
+      border: 1px solid #000000;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+  }
+  
+  table th,
+  td {
+      border: 1px solid #000000;
+      padding: 2px 10px;
+  }
+  
+  table td {
+      text-align: right;
+  }
+  
+  table td.center {
+      text-align: center;
+  }
+  
+  .bold {
+      font-weight: bold;
+  }
+  
+  .humans-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+  }
+  
+  .humans {
+      margin-top: 30px;
+      width: 100%;
+  }
+  
+  .humans p {
+      margin-bottom: 30px;
+  }
+}
+

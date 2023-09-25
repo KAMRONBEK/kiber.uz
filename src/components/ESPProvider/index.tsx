@@ -22,7 +22,7 @@ if (EIMZOClient) {
   ];
 }
 
-console.log({ EIMZOClient });
+console.log({ window });
 
 const ESPProvider = () => {
   const dispatch = useDispatch();

@@ -29,9 +29,3 @@ export const { actions: loaderAction, reducer: loaderReducer } = createSlice({
     },
   },
 });
-
-// export const { reducer: loaderReducer } = createSlice({
-//   name: "loader",
-//   initialState,
-//   reducers: {},
-// });

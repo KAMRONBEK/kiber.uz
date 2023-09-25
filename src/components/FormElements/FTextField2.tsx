@@ -1,6 +1,5 @@
-import { TextField } from "@mui/material"
-import _ from "lodash"
-
+import { TextField } from "@mui/material";
+import _ from "lodash";
 
 //@ts-ignore
 const FTextField = ({ formik, type, name, nestLevel = false, ...props }) => {
@@ -17,7 +16,7 @@ const FTextField = ({ formik, type, name, nestLevel = false, ...props }) => {
       }
       {...props}
     />
-  )
-}
+  );
+};
 
-export default FTextField
+export default FTextField;

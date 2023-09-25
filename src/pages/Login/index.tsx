@@ -14,38 +14,45 @@ import { useMemo } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import ESPList from "../../components/ESPList";
-import FTextField from "../../components/FormElements/FTextField2";
 import { loginAction, registerAction } from "../../redux/thunks/auth.thunk";
+import { authActions } from "../../redux/slices/auth.slice";
 import SignInPage from "./SignIn";
 import "./style.scss";
 import { Person, VpnKey } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 import i18n from "../../language/i18n";
+import userService from "../../services/userService";
 
 const LoginPage = () => {
   const history = useNavigate();
   const dispatch = useDispatch();
   //@ts-ignore
   const loader = useSelector((state) => state.loader.loginLoader);
-  const [selectedKey, setSelectedKey] = useState(null);
+  const [selectedKey, setSelectedKey] = useState({
+    TIN: "",
+    CN: "",
+  });
   const [selectedTab, setSelectedTab] = useState("0");
   const [color, setColor] = useState("");
   const [open, setOpen] = useState(true);
   const [checkBoxValue, setCheckboxValue] = useState(false);
   //@ts-ignore
   const isRegistered = useSelector((state) => state.auth.isRegistered);
-
+  // @ts-ignore
+  const isAuth = useSelector((state) => state.auth.isAuth);
   const { t } = useTranslation();
 
   const submitHandler = () => {
     if (isRegistered) {
       //@ts-ignore
-      dispatch(loginAction(selectedKey, "2"));
+      dispatch(loginAction(selectedKey));
     } else {
       //@ts-ignore
       dispatch(registerAction(selectedKey));
+      dispatch(authActions.updateRegistration(true));
     }
+    console.log({ selectedKey });
+    searchPinfl(selectedKey);
   };
 
   //@ts-ignore
@@ -68,10 +75,11 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
+    if (isAuth) {
+      history("/");
+    }
     setSelectedKey(selectedKey);
-  }, [selectedKey]);
-
-  // const formik = useFormik({})
+  }, [selectedKey, isAuth]);
 
   const checkLanguage = () => {
     // eslint-disable-next-line default-case
@@ -81,6 +89,22 @@ const LoginPage = () => {
       case "uz":
         return "https://kiber.uz/terms/uz.pdf";
     }
+  };
+  // @ts-ignore
+  const searchPinfl = (key) => {
+    const token = localStorage.getItem("token");
+    console.log({ token });
+    // @ts-ignore
+    userService.searchUser(key.TIN, JSON.parse(token)).then((res) => {
+      setSelectedKey((prev) => {
+        return {
+          // @ts-ignore
+          ...prev,
+          // @ts-ignore
+          PINFL: res.personalNum,
+        };
+      });
+    });
   };
 
   return (
@@ -155,6 +179,8 @@ const LoginPage = () => {
                 //@ts-ignore
                 getOptionLabel={(option) => option.CN + "    " + option.TIN}
                 onChange={(_event, option) => {
+                  console.log({ option });
+                  // @ts-ignore
                   setSelectedKey(option);
                 }}
                 value={selectedKey}
@@ -240,10 +266,31 @@ const LoginPage = () => {
                 size="large"
                 className="btn"
                 loading={loader}
-                disabled={!isRegistered ? !checkBoxValue : !selectedKey}
+                disabled={
+                  !isRegistered
+                    ? !checkBoxValue
+                    : // @ts-ignore
+                      !selectedKey || selectedKey.expired === true
+                }
               >
                 {!isRegistered ? <p>{t("register")}</p> : <p>{t("enter")}</p>}
               </LoadingButton>
+              {/* @ts-ignore */}
+              {selectedKey?.expired && (
+                <p
+                  style={{
+                    marginTop: "15px",
+                    border: "1px solid red",
+                    borderRadius: "5px",
+                    width: "100%",
+                    textAlign: "center",
+                    padding: "5px",
+                    color: "red",
+                  }}
+                >
+                  Срок ключа прошел
+                </p>
+              )}
             </div>
           </TabPanel>
           <TabPanel value="1">

@@ -1,11 +1,11 @@
-import { LoadingButton } from "@mui/lab"
-import { useFormik } from "formik"
-import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
-import { signAction } from "../../redux/thunks/auth.thunk"
-import "./style.scss"
-import { useTranslation } from "react-i18next"
+import { LoadingButton } from "@mui/lab";
+import { useFormik } from "formik";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { signAction } from "../../redux/thunks/auth.thunk";
+import "./style.scss";
+import { useTranslation } from "react-i18next";
 
 //@ts-ignore
 export const useOnKeyPress = (callback, targetKey) => {
@@ -13,39 +13,38 @@ export const useOnKeyPress = (callback, targetKey) => {
     //@ts-ignore
     const keyPressHandler = (event) => {
       if (event.key === targetKey) {
-        callback()
+        callback();
       }
-    }
-    window.addEventListener("keydown", keyPressHandler)
+    };
+    window.addEventListener("keydown", keyPressHandler);
 
     return () => {
-      window.removeEventListener("keydown", keyPressHandler)
-    }
-  }, [callback, targetKey])
-}
+      window.removeEventListener("keydown", keyPressHandler);
+    };
+  }, [callback, targetKey]);
+};
 //@ts-ignore
 const SignInPage = (submitHandlerSign) => {
-  const history = useNavigate()
-  const dispatch = useDispatch()
+  const history = useNavigate();
+  const dispatch = useDispatch();
   //@ts-ignore
-  const loader = useSelector((state) => state.loader.loginLoader)
+  const loader = useSelector((state) => state.loader.loginLoader);
 
-  const [selectedKey, setSelectedKey] = useState(null)
-  const [password, setPassword] = useState("")
-  const [tin, setTin] = useState("")
+  const [selectedKey, setSelectedKey] = useState(null);
+  const [password, setPassword] = useState("");
+  const [tin, setTin] = useState("");
 
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const submitHandler = () => {
     //@ts-ignore
-    dispatch(signAction(tin, password, "1"))
-  }
+    dispatch(signAction(tin, password, "1"));
+  };
 
-  useOnKeyPress(submitHandler, "Enter")
+  useOnKeyPress(submitHandler, "Enter");
 
   //@ts-ignore
-  const formik = useFormik({})
-
+  const formik = useFormik({});
   return (
     <div className="LoginPage">
       <div className="sign-box">
@@ -104,7 +103,7 @@ const SignInPage = (submitHandlerSign) => {
         </LoadingButton>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SignInPage
+export default SignInPage;

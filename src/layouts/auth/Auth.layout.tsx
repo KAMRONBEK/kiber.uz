@@ -1,32 +1,24 @@
-import "./style.scss"
-import Logo from "../../assets/images/kiber-logo-purple.svg"
-import document from "../../assets/images/document.png"
-import login from "../../assets/images/login.png"
-import { useNavigate, useLocation } from "react-router-dom"
-import { useMemo } from "react"
-import { Button } from "@mui/material"
+import "./style.scss";
+import Logo from "../../assets/images/kiber-logo-purple.svg";
+import document from "../../assets/images/document.png";
+import login from "../../assets/images/login.png";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useMemo } from "react";
+import { Button } from "@mui/material";
 
 //@ts-ignore
 const AuthLayout = ({ children }) => {
-  const history = useNavigate()
-  const location = useLocation()
+  const history = useNavigate();
+  const location = useLocation();
 
   const isLoginPage = useMemo(() => {
-    return location.pathname.includes("login")
-  }, [])
+    return location.pathname.includes("login");
+  }, []);
 
   return (
     <div className="AuthLayout">
       <div className="header">
         <img src={Logo} alt="logo" onClick={() => history("/")} />
-        {/* <Button
-          onClick={() => history.push("/registration")}
-          variant="contained"
-          size="large"
-          className="secondary-btn"
-        >
-          Регистрация
-        </Button> */}
       </div>
       <div style={{ display: "flex", alignItems: "center" }}>
         <div className="right-side">{children}</div>
@@ -37,7 +29,7 @@ const AuthLayout = ({ children }) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AuthLayout
+export default AuthLayout;

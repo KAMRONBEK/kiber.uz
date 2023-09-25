@@ -1,6 +1,6 @@
 import axios from "axios";
 import { store } from "../redux/store";
-// import { authActions } from "../redux/slices/auth.slice"
+import { authActions } from "../redux/slices/auth.slice";
 import { showAlert } from "../redux/thunks/alert.thunk";
 // export const baseURL = "http://80.80.218.145:9000/api"
 export const baseURL = "https://kiber.uz/api";
@@ -26,7 +26,8 @@ const errorHandler = (error, hooks) => {
 
     if (error?.response?.status === 403) {
     } else if (error?.response?.status === 401) {
-      // store.dispatch(authActions.logout());
+      //@ts-ignore
+      store.dispatch(authActions.logout());
     }
   } else {
     store.dispatch(showAlert("_______Error________", "error"));
@@ -46,7 +47,6 @@ reqGenerator.interceptors.request.use(
     }
     return config;
   },
-
   //@ts-ignore
   (error) => errorHandler(error)
 );

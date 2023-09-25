@@ -4,7 +4,7 @@ const userService = {
   //@ts-ignore
   searchUser: (tin, token) => {
     localStorage.setItem("token", JSON.stringify(token));
-    return reqGenerator.get(`/person/info/${tin}`);
+    return reqGenerator.get(`/user/get-info/${tin}`);
   },
   //@ts-ignore
   getUserDocument: (tin) => reqGenerator.get(`admin/document/stat/${tin}`),

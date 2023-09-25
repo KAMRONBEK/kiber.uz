@@ -1,0 +1,318 @@
+.PersonalArea {
+  .price-section {
+
+    background-color: #fff;
+
+    .small-title {
+      font-weight: 700;
+      font-size: 25px;
+      line-height: 64px;
+      color: #000;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .area {
+      display: flex;
+      grid-gap: 30px;
+      justify-content: center;
+
+      .price-card {
+        // margin-top: 10px;
+        border-radius: 10px;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0px 2px 4px 2px rgba(18, 18, 18, 0.15);
+        &:hover {
+          // background-color: #5d35b1;
+          
+          border-radius: 10px;
+          border: 1px solid #4867b4;
+
+          .text {
+            color: #374151;
+
+            .check-icon-box {
+              background-color: #4867b4;
+            }
+          }
+
+          .header {
+            .price-name {
+              color: #374151;
+
+              p {
+                color: #5608a5;
+                background-color: #f6b83f;
+              }
+            }
+            .price-summ {
+              color: #374151;
+            }
+          }
+
+          .button {
+            border: 1px solid #4867b4;
+            background-color: #4867b4;
+            color: #fff;
+          }
+        }
+
+        .header {
+          margin-bottom: 16px;
+
+          .price-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2c2a2e;
+            display: flex;
+            align-items: center;
+
+            p {
+              color: #fff;
+              margin-left: 8px;
+              font-size: 12px;
+              border-radius: 6px;
+              padding: 0px 10px 0px 10px;
+              background-color: #5d35b1;
+            }
+          }
+
+          .price-summ {
+            font-size: 28px;
+            font-weight: 700;
+            margin-top: 20px;
+            color: #341f47;
+            display: flex;
+
+            .price-summ-two {
+              margin-top: 4px;
+              margin-left: 6px;
+              font-size: 14px;
+              font-weight: 400;
+            }
+          }
+        }
+
+        .line {
+          margin-top: 20px;
+          margin-bottom: 30px;
+          border: 1px dashed #ccc;
+        }
+
+        .button {
+          margin: 0px 0px 0px 15px;
+          padding: 10px 100px 10px 100px;
+        }
+
+        .text {
+          font-size: 14px;
+          font-weight: 400;
+          color: #2c2a2e;
+          display: flex;
+
+          .check-icon-box {
+            width: 18px;
+            height: 18px;
+            margin-top: 5px;
+            margin-right: 10px;
+            border-radius: 30px;
+            background-color: #22c55e;
+
+            .check-icon {
+              width: 8px;
+              height: 8px;
+              margin-left: 5px;
+              margin-bottom: 7px;
+            }
+          }
+
+          p {
+            max-width: 250px;
+          }
+        }
+      }
+    }
+  }
+  .box-container {
+    display: flex;
+    justify-content: space-around;
+    overflow-y: hidden;
+    overflow-x: scroll;
+
+    .box {
+      width: 350px;
+      height: 300px;
+      margin: 10px;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+
+      .doughnut-box {
+        text-align: center;
+
+        .text {
+          color: #000;
+          font-size: 18px;
+          font-weight: 700;
+        }
+        .doughnut {
+          width: 180px;
+          height: 180px;
+          margin: 0 22px;
+        }
+      }
+
+      .div {
+        margin: 20px 0;
+        display: flex;
+        align-items: center;
+
+        .inbox {
+          font-size: 14px;
+          font-weight: 400;
+          color: #fd8b39;
+          // margin-left: 10px;
+        }
+
+        .outbox {
+          font-size: 14px;
+          font-weight: 400;
+          color: #4867b4;
+        }
+      }
+    }
+  }
+
+  .edit-container {
+    margin-top: 10px;
+    padding: 20px 40px 40px 40px;
+
+    .round-box {
+      width: 160px;
+      height: 160px;
+      display: flex;
+      margin-right: 20px;
+      align-items: center;
+      border-radius: 16px;
+      justify-content: center;
+      background-color: #f1f2f9;
+    }
+
+    .input-box {
+      margin-top: 30px;
+      display: flex;
+      // align-items: center;
+
+      .card-title {
+        margin-bottom: 15px;
+      }
+    }
+
+    .name-box {
+      .name {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1e2126;
+      }
+
+      .user-position {
+        font-size: 12px;
+        font-weight: 400;
+        color: #7d91a9;
+        margin-top: 4px;
+      }
+
+      .button-container {
+        display: flex;
+        margin-top: 20px;
+        // justify-content: space-between;
+      }
+    }
+  }
+
+  .statistic-container {
+    margin: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .box {
+      width: 49%;
+      height: 160px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      background-color: #f0f3fa;
+
+      p {
+        font-weight: 500;
+        font-size: 16px;
+        color: #1e2126;
+      }
+
+      .in-box {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+
+        .outgoing-box {
+          .outgoing-text {
+            font-size: 12px;
+            font-weight: 400;
+            color: #7d91a9;
+          }
+
+          .outgoing-number-box {
+            display: flex;
+            margin-top: 8px;
+            align-items: center;
+
+            p {
+              margin-left: 2px;
+              font-size: 24px;
+              font-weight: 700;
+              color: #3e68ba;
+            }
+          }
+        }
+
+        .inbox-box {
+          .inbox-text {
+            font-size: 12px;
+            font-weight: 400;
+            color: #7d91a9;
+          }
+
+          .inbox-number-box {
+            display: flex;
+            margin-top: 8px;
+            align-items: center;
+
+            p {
+              margin-left: 2px;
+              font-size: 24px;
+              font-weight: 700;
+              color: #3e68ba;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .user-box {
+    width: 100%;
+    display: flex;
+    padding-top: 10px;
+    padding-right: 30px;
+    justify-content: flex-end;
+
+    .button {
+      background-color: #fff;
+    }
+  }
+}

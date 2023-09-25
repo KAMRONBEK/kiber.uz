@@ -1,0 +1,49 @@
+.FacturaCreate {
+  padding: 20px;
+
+  .card-title {
+    margin-bottom: 25px;
+    width: 100%;
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    grid-gap: 20px;
+  }
+
+}
+
+.products__table{
+  min-width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+  display: table;
+}
+.products__tbody, .products__thead {
+  display: table-row-group;
+}
+.products__tr {
+  display: table-row;
+}
+.products__th {
+  display: table-cell;
+  font: 1.6rem ;
+  color: #000;
+  background: #c4c4c4;
+  border: 1px solid #3c3c3c;
+  padding: 5px;
+  vertical-align: middle;
+  text-align: center;
+}
+.products__td {
+  display: table-cell;
+  position: relative;
+  font: 2.1rem ;
+  vertical-align: middle;
+  border: 1px solid #3c3c3c;
+  height: 50px;
+  text-align: center;
+}

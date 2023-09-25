@@ -1,0 +1,61 @@
+export const initialValues = {
+  carrierTin: "",
+  carrierName: "",
+  carrierBranchCode: "",
+  carrierBranchName: "",
+  customerTin: "",
+  customerName: "",
+  customerBranchCode: "",
+  customerBranchName: "",
+  departuresCount: "",
+  waybillDoc: {
+    waybillNo: "",
+    waybillDate: "",
+  },
+  deliveryType: "1",
+  transportType: "0",
+  isShiftOverall: false,
+  contractDoc: {
+    contractNo: "",
+    contractDate: "",
+  },
+  tripTicketDoc: {
+    tripTicketNo: "",
+    tripTicketDate: "",
+  },
+  truckDoc: {
+    truckRegNo: "",
+    truckModel: "",
+  },
+  trailerDoc: {
+    trailerType: "1",
+    trailerRegNo: "",
+    trailerModel: "",
+  },
+  driverFio: "",
+  sellerTin: "",
+  sellerName: "",
+  buyerTin: "",
+  buyerName: "",
+  pointDocs: [
+    {
+      pointOfLoading: "Пункт погрузки 1",
+      pointOfUnloading: "Пункт разгрузки 1",
+    },
+    {
+      pointOfLoading: "Пункт погрузки 2",
+      pointOfUnloading: "Пункт разгрузки 2",
+    },
+  ],
+  pointOfRedirectName: "Наименование нового грузополучателя",
+  pointOfRedirectAddress: "Адрес нового грузополучателя",
+  specialNotes: "",
+  giverFio: "",
+  giverDriverFio: "",
+  takerFio: "",
+  takerDriverFio: "",
+  deliveryDistanceDoc: {
+    deliveryDistance: 0,
+    deliveryDistanceInCity: 0,
+  },
+};

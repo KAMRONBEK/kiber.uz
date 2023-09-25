@@ -3,7 +3,7 @@ import { alertActions } from "../slices/alert.slice";
 let _id = 1;
 
 export const showAlert =
-  (title = "", type = "error", time = 4000) =>
+  (title = "", type = "error", time = 10000) =>
   //@ts-ignore
   (dispatch) => {
     let id = _id;

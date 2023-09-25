@@ -1,0 +1,30 @@
+.DocTable {
+  .pagination-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 30px;
+
+    .button {
+      background-color: #4867b4;
+      color: #fff;
+    }
+  }
+
+  // .MuiTableRow-root:nth-child(odd) {
+  //   background-color: #F0F3F9;
+  // }
+}
+
+.Filters {
+  display: flex;
+  align-items: center;
+  grid-gap: 30px;
+
+  .filter-area {
+    display: flex;
+    width: 500px;
+    grid-gap: 20px;
+  }
+}
