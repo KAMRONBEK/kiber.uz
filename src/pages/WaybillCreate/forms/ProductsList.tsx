@@ -1,18 +1,9 @@
-import {
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  Button,
-  Typography,
-} from "@mui/material";
-import ProductItem from "./ProductItem";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { useMemo } from "react";
+import { Button, Typography } from "@mui/material";
 import { t } from "i18next";
+import { useMemo } from "react";
 import { useSelector } from "react-redux";
+import ProductItem from "./ProductItem";
 
 // @ts-ignore
 const ProductsList = ({ products, setProducts }) => {
@@ -119,8 +110,7 @@ const ProductsList = ({ products, setProducts }) => {
           </tr>
         </thead>
         <tbody>
-          {/* @ts-ignore */}
-          {products.map((product, index) => (
+          {products.map((product: any, index: any) => (
             <ProductItem
               products={products}
               product={product}

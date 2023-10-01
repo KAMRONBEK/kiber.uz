@@ -1,19 +1,10 @@
-import {
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-} from "@mui/material";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { Button, TableRow, Typography } from "@mui/material";
+import { styled } from "@mui/styles";
 import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import ProductItem from "./ProductItem";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { useTranslation } from "react-i18next";
-import { styled } from "@mui/styles";
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
@@ -48,18 +39,14 @@ const ProductList = ({
 
   const computedCatalogList = useMemo(() => {
     if (!catalogList?.length) return [];
-    // @ts-ignore
-    return catalogList.map((catalog) => ({
+    return catalogList.map((catalog: { mxikCode: any; groupName: any }) => ({
       label: `${catalog?.mxikCode} - ${catalog?.groupName}`,
       value: catalog?.mxikCode,
     }));
   }, [catalogList]);
 
-  // @ts-ignore
-  const changeHandler = (index, name, value) => {
-    // @ts-ignore
-    setProductList((prev) => {
-      // @ts-ignore
+  const changeHandler = (index: any, name: any, value: any) => {
+    setProductList((prev: any[]) => {
       const result = prev.map((el, i) => {
         return i === index ? { ...el, [name]: value } : el;
       });
@@ -97,15 +84,13 @@ const ProductList = ({
     // @ts-ignore
     setProductList((prev) => [...prev, newProduct]);
   };
-  // @ts-ignore
-  const removeProduct = (index) => {
-    // @ts-ignore
-    setProductList((prev) => prev.filter((_, i) => i !== index));
+
+  const removeProduct = (index: any) => {
+    setProductList((prev: any[]) => prev?.filter((_, i) => i !== index));
   };
   const computedTotalSumm = useMemo(() => {
     let total = 0;
-    // @ts-ignore
-    productList.forEach((product) => {
+    productList.forEach((product: { deliverySumWithVat: number }) => {
       total += product.deliverySumWithVat;
     });
     return total;
@@ -121,6 +106,7 @@ const ProductList = ({
       window.removeEventListener("resize", updateDimension);
     };
   }, [windowWidth]);
+
   return (
     <div
       className="ProductsList"
@@ -166,8 +152,7 @@ const ProductList = ({
           </tr>
         </thead>
         <tbody>
-          {/* @ts-ignore */}
-          {productList.map((product, index) => (
+          {productList.map((product: any[], index: number) => (
             <ProductItem
               products={productList}
               index={index}
