@@ -27,7 +27,7 @@ import {
 } from "@mui/material";
 // @ts-ignore
 import moment from "moment";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -119,10 +119,11 @@ const InvoiceDocTable = () => {
 
   const history = useNavigate();
   const params = useParams();
-  const [tableData, setTableData] = useState([]);
-  const [loader, setLoader] = useState(true);
+  const [tableData, setTableData] = useState<any>([]);
+  const [loader, setLoader] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
+  const [newFilter, setNewFilter] = useState<any>();
   // @ts-ignore
   const userData = useSelector((state) => state.auth.userData);
   //filters
@@ -131,31 +132,28 @@ const InvoiceDocTable = () => {
   const originalFilters = useSelector((state) => state.filter);
 
   const filters = JSON.parse(JSON.stringify(originalFilters));
+  // console.log("filters", JSON.stringify(filters, null, 2));
 
-  useEffect(() => {
-    Object.keys(filters).map((key) => {
-      let newKey = `${key.replace(
-        /[A-Z]/g,
-        (letter) => `_${letter.toLowerCase()}`
-      )}`;
+  // useEffect(() => {
+  //   Object.keys(filters).map((key) => {
+  //     let newKey = `${key.replace(
+  //       /[A-Z]/g,
+  //       (letter) => `_${letter.toLowerCase()}`
+  //     )}`;
 
-      filters[newKey] = filters[key];
-      delete filters[key];
-    });
+  //     filters[newKey] = filters[key];
+  //     delete filters[key];
+  //   });
+  // }, [currentPage, originalFilters]);
 
-    fetchDocList(filters);
-  }, [currentPage, originalFilters]);
-
-  // @ts-ignore
-  const fetchDocList = (filters) => {
-    setLoader(true);
+  const fetchDocList = async (filters: any) => {
     const data = {
       type: params.type,
       tin: userData.person.tin,
       ...filters,
     };
 
-    docService
+    await docService
       .getInvoiceDocList(data)
       // @ts-ignore
       .then((res) => {
@@ -163,8 +161,37 @@ const InvoiceDocTable = () => {
         // @ts-ignore
         setPageCount(Math.ceil(res.count / 10));
       })
-      .finally(() => setLoader(false));
+      .finally();
   };
+
+  useEffect(() => {
+    fetchDocList(filters);
+  }, []);
+  // const fetchDocList2 = useCallback(async () => {
+  //   setLoader(true);
+  //   const data = {
+  //     type: params.type,
+  //     tin: userData.person.tin,
+  //     ...newFilter,
+  //   };
+  //   try {
+  //     let res = await docService.getInvoiceDocList(data);
+  //     setTableData(res.data);
+  //     // @ts-ignore
+  //     setPageCount(Math.ceil(res.count / 10));
+  //   } catch (error) {
+  //     console.log(error);
+  //   } finally {
+  //     setLoader(false);
+  //   }
+  // }, [newFilter, params.type]);
+  // useEffect(() => {
+  //   fetchDocList2();
+  // }, [fetchDocList2]);
+
+  // console.log("tableData==", JSON.stringify(tableData[0], null, 2));
+
+  const tinId = params.type === "sender" ? true : false;
 
   return (
     <Paper className="DocTable" elevation={12} style={{ padding: "20px" }}>
@@ -187,7 +214,7 @@ const InvoiceDocTable = () => {
           </TableHead>
 
           <TableBody style={{ position: "relative" }}>
-            {tableData?.map((row, index) => (
+            {tableData?.map((row: any, index: number) => (
               <StyledTableRow
                 // @ts-ignore
                 key={row.id}
@@ -195,7 +222,9 @@ const InvoiceDocTable = () => {
                   // @ts-ignore
                   if (row.status !== 0) {
                     // @ts-ignore
-                    history(`/main/invoice/${row.facturaId}`);
+                    history(`/main/invoice/${row.facturaId}`, {
+                      state: tinId ? row?.sellerTin : row?.buyerTin,
+                    });
                   } else {
                     // @ts-ignore
                     history(`/main/factura/create`, {

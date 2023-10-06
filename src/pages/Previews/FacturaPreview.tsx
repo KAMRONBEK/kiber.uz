@@ -6,7 +6,7 @@ import {
 } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import {
   invoiceAcceptDoc,
@@ -29,18 +29,19 @@ const FacturaPreview = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   // @ts-ignore
   const userTin = useSelector((state) => state.auth.userTin);
 
   const [docData, setDocData] = useState({});
   const [laoder, setLoader] = useState(true);
   const [type, setType] = useState(null);
-  const [statusId, setStatusId] = useState(null);
+
   const [signedFile, setSignedFile] = useState(null);
 
-  const fetchDocData = () => {
-    docService
-      .getInvoiceData(params.id)
+  const fetchDocData = async () => {
+    await docService
+      .getInvoiceData(params.id, location?.state)
       // @ts-ignore
       .then((res) => {
         console.log({ res });
@@ -58,8 +59,7 @@ const FacturaPreview = () => {
           };
         });
         // setDocData(res);
-        // @ts-ignore
-        setStatusId(res.status);
+
         // @ts-ignore
         setSignedFile(res.sellerSign);
         // @ts-ignore

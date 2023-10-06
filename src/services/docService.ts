@@ -28,7 +28,8 @@ const docService = {
   // @ts-ignore
   getWaybillData: (id) => reqGenerator.get(`/waybill/detail/${id}`),
   // @ts-ignore
-  getInvoiceData: (id) => reqGenerator.get(`/factura/detail/${id}`),
+  getInvoiceData: (id, tin?: any) =>
+    reqGenerator.get(`/factura/detail/${id}?tin=${tin}`),
   // @ts-ignore
   getContractData: (id) => reqGenerator.get(`/contract/detail/${id}`),
   // @ts-ignore
