@@ -1,18 +1,9 @@
-import {
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-} from "@mui/material";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { Button, Typography } from "@mui/material";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import ProductItem from "./ProductItem";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { useTranslation } from "react-i18next";
 
 let id = 2;
 // @ts-ignore

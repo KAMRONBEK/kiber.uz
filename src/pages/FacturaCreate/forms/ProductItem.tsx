@@ -10,31 +10,33 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import CNumberField from "../../../components/CNumberField";
 import lgotaService from "../../../services/lgotaService";
 import { useEffect, useMemo, useState } from "react";
+type propsType = {
+  product?: any;
+  products?: any;
+  removeProduct?: any;
+  index?: any;
+  changeHandler?: any;
+  computedCatalogList?: any;
+  hasExcise?: any;
+  formik?: any;
+  hasCommittent?: any;
+};
+const ProductItem = (props: propsType) => {
+  let {
+    product,
+    products,
+    removeProduct,
+    index,
+    changeHandler,
+    computedCatalogList,
+    hasExcise,
+    formik,
+    hasCommittent,
+  } = props;
+  const [lgotaList, setLgotaList] = useState<any>([]);
+  console.log(JSON.stringify(computedCatalogList, null, 2));
 
-// @ts-ignore
-const ProductItem = ({
-  // @ts-ignore
-  product,
-  // @ts-ignore
-  products,
-  // @ts-ignore
-  removeProduct,
-  // @ts-ignore
-  index,
-  // @ts-ignore
-  changeHandler,
-  // @ts-ignore
-  computedCatalogList,
-  // @ts-ignore
-  hasExcise,
-  // @ts-ignore
-  formik,
-  // @ts-ignore
-  hasCommittent,
-}) => {
-  const [lgotaList, setLgotaList] = useState([]);
-  // @ts-ignore
-  const countChangeHandler = (val) => {
+  const countChangeHandler = (val: any) => {
     changeHandler(index, "count", val);
     const deliverySum = Number(val) * Number(product.summa);
     changeHandler(index, "deliverySum", isNaN(deliverySum) ? 0 : deliverySum);
@@ -89,16 +91,45 @@ const ProductItem = ({
       isNaN(deliverySumWithVat) ? 0 : deliverySumWithVat
     );
   };
+  // console.log("formik===", JSON.stringify(formik, null, 2));
+  const tinsSecond = formik?.values?.buyerTin !== "" ? false : true;
 
   const searchLgotaId = (mxik = "") => {
     lgotaService
-      .fetchLgota({
+      .fetchLgotaNew({
         mxik: [mxik],
+        tins: tinsSecond
+          ? [formik?.values?.sellerTin]
+          : [formik?.values?.sellerTin, formik?.values?.buyerTin],
         checkDate: formik.values.facturaDoc.facturaDate,
       })
-      .then((res) => {
-        // @ts-ignore
-        setLgotaList(res[`${mxik}`].withoutVat);
+      .then((res: any) => {
+        const lgotas = [];
+        for (let i = 0; i < res.product[`${mxik}`].withoutVat.length; i++) {
+          lgotas.push(res.product[`${mxik}`].withoutVat[i]);
+        }
+        for (
+          let i = 0;
+          i < res.company[`${formik?.values?.sellerTin}`]?.sellerLgotas?.length;
+          i++
+        ) {
+          lgotas.push(
+            res.company[`${formik?.values?.sellerTin}`]?.sellerLgotas[i]
+          );
+        }
+        for (
+          let i = 0;
+          i < res.company[`${formik?.values?.buyerTin}`]?.sellerLgotas?.length;
+          i++
+        ) {
+          lgotas.push(
+            res.company[`${formik?.values?.buyerTin}`]?.buyerLgotas[i]
+          );
+        }
+        setLgotaList(lgotas);
+        console.log("lgotas", lgotas);
+
+        // setLgotaList(res[`${mxik}`].withoutVat);
       });
   };
 
@@ -107,13 +138,11 @@ const ProductItem = ({
   }, [product.catalogCode]);
 
   const computedLgotaList = useMemo(() => {
-    // @ts-ignore
     if (!lgotaList?.length) return [];
-    // @ts-ignore
-    return lgotaList.map((lgota) => ({
-      // @ts-ignore
+
+    return lgotaList.map((lgota: any) => ({
       label: `${lgota.lgotaName}`,
-      // @ts-ignore
+
       value: lgota.lgotaId,
     }));
   }, [lgotaList]);
