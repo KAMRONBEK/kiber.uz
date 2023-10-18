@@ -1,18 +1,14 @@
 import { LoadingButton } from "@mui/lab";
-import { useFormik } from "formik";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { signAction } from "../../redux/thunks/auth.thunk";
 import "./style.scss";
-import { useTranslation } from "react-i18next";
 
-//@ts-ignore
-export const useOnKeyPress = (callback, targetKey) => {
+export const useOnKeyPress = (callback: any, targetKey: unknown) => {
   useEffect(() => {
-    //@ts-ignore
-    const keyPressHandler = (event) => {
-      if (event.key === targetKey) {
+    const keyPressHandler = (event: { key: unknown }) => {
+      if (event?.key === targetKey) {
         callback();
       }
     };
@@ -23,28 +19,24 @@ export const useOnKeyPress = (callback, targetKey) => {
     };
   }, [callback, targetKey]);
 };
-//@ts-ignore
-const SignInPage = (submitHandlerSign) => {
-  const history = useNavigate();
-  const dispatch = useDispatch();
-  //@ts-ignore
-  const loader = useSelector((state) => state.loader.loginLoader);
 
-  const [selectedKey, setSelectedKey] = useState(null);
+const SignInPage = () => {
+  const dispatch: any = useDispatch();
+
+  const loader = useSelector((state: any) => state?.loader?.loginLoader);
+
   const [password, setPassword] = useState("");
   const [tin, setTin] = useState("");
 
   const { t } = useTranslation();
 
   const submitHandler = () => {
-    //@ts-ignore
     dispatch(signAction(tin, password, "1"));
   };
 
   useOnKeyPress(submitHandler, "Enter");
 
-  //@ts-ignore
-  const formik = useFormik({});
+  // const formik = useFormik({});
   return (
     <div className="LoginPage">
       <div className="sign-box">

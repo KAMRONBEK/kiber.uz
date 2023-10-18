@@ -150,7 +150,7 @@ const DocListPage = () => {
           )
         }
       >
-        <>
+     
           <Button
             variant="contained"
             startIcon={<Add />}
@@ -160,7 +160,7 @@ const DocListPage = () => {
           >
             Создать
           </Button>
-        </>
+  
       </Header>
 
       <div

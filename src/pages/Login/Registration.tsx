@@ -1,25 +1,25 @@
-import { LoadingButton } from "@mui/lab"
-import { Button, Checkbox, Typography } from "@mui/material"
-import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
-import ESPList from "../../components/ESPList"
-import { registerAction } from "../../redux/thunks/auth.thunk"
-import "./style.scss"
+import { LoadingButton } from "@mui/lab";
+import { Button, Checkbox, Typography } from "@mui/material";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import ESPList from "../../components/ESPList";
+import { registerAction } from "../../redux/thunks/auth.thunk";
+import "./style.scss";
 
 const RegistrationPage = () => {
-  const history = useNavigate()
-  const dispatch = useDispatch()
+  const history = useNavigate();
+  const dispatch = useDispatch();
   //@ts-ignore
-  const loader = useSelector((state) => state.loader.loginLoader)
-  const [selectedKey, setSelectedKey] = useState(null)
-  const [checkBoxValue, setCheckboxValue] = useState(false)
-  const [open, setOpen] = useState(true)
+  const loader = useSelector((state) => state.loader.loginLoader);
+  const [selectedKey, setSelectedKey] = useState(null);
+  const [checkBoxValue, setCheckboxValue] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const submitHandler = () => {
     //@ts-ignore
-    dispatch(registerAction(selectedKey))
-  }
+    dispatch(registerAction(selectedKey));
+  };
 
   return (
     <div className="LoginPage">
@@ -90,7 +90,7 @@ const RegistrationPage = () => {
         </div>
       ) : null}
     </div>
-  )
-}
+  );
+};
 
-export default RegistrationPage
+export default RegistrationPage;

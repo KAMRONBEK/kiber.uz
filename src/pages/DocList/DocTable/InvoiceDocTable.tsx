@@ -134,17 +134,17 @@ const InvoiceDocTable = () => {
   const filters = JSON.parse(JSON.stringify(originalFilters));
   // console.log("filters", JSON.stringify(filters, null, 2));
 
-  // useEffect(() => {
-  //   Object.keys(filters).map((key) => {
-  //     let newKey = `${key.replace(
-  //       /[A-Z]/g,
-  //       (letter) => `_${letter.toLowerCase()}`
-  //     )}`;
+  useEffect(() => {
+    Object.keys(filters).map((key) => {
+      let newKey = `${key.replace(
+        /[A-Z]/g,
+        (letter) => `_${letter.toLowerCase()}`
+      )}`;
 
-  //     filters[newKey] = filters[key];
-  //     delete filters[key];
-  //   });
-  // }, [currentPage, originalFilters]);
+      filters[newKey] = filters[key];
+      delete filters[key];
+    });
+  }, [currentPage, originalFilters]);
 
   const fetchDocList = async (filters: any) => {
     const data = {
@@ -167,29 +167,6 @@ const InvoiceDocTable = () => {
   useEffect(() => {
     fetchDocList(filters);
   }, []);
-  // const fetchDocList2 = useCallback(async () => {
-  //   setLoader(true);
-  //   const data = {
-  //     type: params.type,
-  //     tin: userData.person.tin,
-  //     ...newFilter,
-  //   };
-  //   try {
-  //     let res = await docService.getInvoiceDocList(data);
-  //     setTableData(res.data);
-  //     // @ts-ignore
-  //     setPageCount(Math.ceil(res.count / 10));
-  //   } catch (error) {
-  //     console.log(error);
-  //   } finally {
-  //     setLoader(false);
-  //   }
-  // }, [newFilter, params.type]);
-  // useEffect(() => {
-  //   fetchDocList2();
-  // }, [fetchDocList2]);
-
-  // console.log("tableData==", JSON.stringify(tableData[0], null, 2));
 
   const tinId = params.type === "sender" ? true : false;
 

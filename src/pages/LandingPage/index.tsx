@@ -5,13 +5,7 @@ import MainSectionImage from "../../assets/images/Devices.png";
 import { Link } from "react-router-dom";
 import MobilePreview from "../../assets/images/Content.png";
 import TariffArea from "./TariffArea";
-import {
-  ArrowRightAlt,
-  Facebook,
-  Instagram,
-  LinkedIn,
-  Twitter,
-} from "@mui/icons-material";
+import { Facebook, Instagram, LinkedIn, Twitter } from "@mui/icons-material";
 import appStore from "../../assets/images/appStore.svg";
 import googlePlay from "../../assets/images/googlePlay.svg";
 import { useState } from "react";
@@ -26,9 +20,9 @@ const LandingPage = () => {
 
   //@ts-ignore
   const handleChange = (event) => {
-    i18n.changeLanguage(event.target.value)
-    setLanguage(event.target.value)
-  }
+    i18n.changeLanguage(event.target.value);
+    setLanguage(event.target.value);
+  };
 
   return (
     <div className="LandingPage" id="connecting">
