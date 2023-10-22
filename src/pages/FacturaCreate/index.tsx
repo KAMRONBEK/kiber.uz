@@ -6,16 +6,18 @@ import {
   Typography,
 } from "@mui/material";
 import { useFormik } from "formik";
+import moment from "moment";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
+import { showAlert } from "../../redux/thunks/alert.thunk";
 import {
   createFacturaDoc,
   saveDocToDraft,
-  saveFacturaDoc,
 } from "../../redux/thunks/docs.thunk";
+import draftService from "../../services/draftService";
 import userService from "../../services/userService";
 import BuyerForm from "./forms/BuyerForm";
 import DocForm from "./forms/DocForm";
@@ -26,9 +28,6 @@ import ProductList from "./forms/ProductList";
 import SellerForm from "./forms/SellerForm";
 import { initialValues } from "./model/initialValues";
 import "./style.scss";
-import moment from "moment";
-import draftService from "../../services/draftService";
-import { showAlert } from "../../redux/thunks/alert.thunk";
 const StyledCard = experimentalStyled(Card)(({ theme }) => ({
   display: "inline-block",
   padding: 15,
@@ -79,8 +78,8 @@ const FacturaCreate = () => {
   const { t } = useTranslation();
   const [tempDisable, setTempDisable] = useState(true);
   console.log({ draftData });
-  // @ts-ignore
-  const onSubmit = (values) => {
+
+  const onSubmit = (values: any) => {
     if (formik.values.facturaType === 4 && productList[0].origin === 0) {
       // @ts-ignore
       dispatch(showAlert("Нужно указать происхождение товара"));
@@ -161,8 +160,10 @@ const FacturaCreate = () => {
     const correctionalFacturaTypes = [1, 4, 5, 6];
     return correctionalFacturaTypes.includes(selectedFacturaType);
   }, [formik.values.facturaType]);
-  // @ts-ignore
-  const searchBuyer = (tin) => {
+
+ 
+
+  const searchBuyer = (tin: any) => {
     const token = localStorage.getItem("token");
     setTempDisable(true);
     userService
@@ -201,6 +202,9 @@ const FacturaCreate = () => {
 
     setTempDisable(false);
   };
+
+  console.log(JSON.stringify(productList,null,2));
+  
 
   const saveDocument = () => {
     // @ts-ignore

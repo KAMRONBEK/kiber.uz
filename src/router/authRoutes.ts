@@ -1,8 +1,8 @@
-import AuthLayout from "../layouts/auth/Auth.layout"
-import LandingLayout from "../layouts/landing/Landing.Layout"
-import LandingPage from "../pages/LandingPage"
-import LoginPage from "../pages/Login"
-import RegistrationPage from "../pages/Login/Registration"
+import AuthLayout from "../layouts/auth/Auth.layout";
+import LandingLayout from "../layouts/landing/Landing.Layout";
+import LandingPage from "../pages/LandingPage";
+import LoginPage from "../pages/Login";
+import RegistrationPage from "../pages/Login/Registration";
 
 const authRoutes = [
   {
@@ -26,6 +26,6 @@ const authRoutes = [
     title: "LandingPage",
     layout: LandingLayout,
   },
-]
+];
 
-export default authRoutes
+export default authRoutes;

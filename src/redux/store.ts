@@ -25,10 +25,6 @@ const authPersistConfig = {
   storage,
 };
 
-// const settingsPersistConfig = {
-//   key: "settings",
-//   storage,
-// };
 
 const measuresPersistConfig = {
   key: "measures",

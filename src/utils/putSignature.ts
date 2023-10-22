@@ -1,25 +1,28 @@
+import { AxiosResponse } from "axios";
 import { store } from "../redux/store";
 import { showAlert } from "../redux/thunks/alert.thunk";
 import { timestamper } from "./timestamper";
 
-//@ts-ignore
-const putSignature = (data, key) => {
+const putSignature = (
+  data: string | AxiosResponse<any, any>,
+  key: null | undefined
+) => {
   store.dispatch(showAlert("Введите пароль для ключа", "info"));
-  //@ts-ignore
+
   if (!key) key = store.getState().auth.key;
   return new Promise((resolve, reject) => {
     //@ts-ignore
-    window.EIMZOClient.loadKey(
+    window?.EIMZOClient.loadKey(
       key,
-      //@ts-ignore
-      (keyId) => {
+
+      (keyId: any) => {
         //@ts-ignore
         window.EIMZOClient.createPkcs7(
           keyId,
           data,
           timestamper,
-          //@ts-ignore
-          (pkcs7) => {
+
+          (pkcs7: unknown) => {
             resolve(pkcs7);
           },
           () => {

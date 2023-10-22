@@ -28,12 +28,12 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   //@ts-ignore
   const loader = useSelector((state) => state.loader.loginLoader);
-  const [selectedKey, setSelectedKey] = useState({
+  const [selectedKey, setSelectedKey] = useState<any>({
     TIN: "",
     CN: "",
   });
   const [selectedTab, setSelectedTab] = useState("0");
-  const [color, setColor] = useState("");
+  const [color, setColor] = useState<boolean>(false);
   const [open, setOpen] = useState(true);
   const [checkBoxValue, setCheckboxValue] = useState(false);
   //@ts-ignore
@@ -51,12 +51,15 @@ const LoginPage = () => {
       dispatch(registerAction(selectedKey));
       dispatch(authActions.updateRegistration(true));
     }
-    console.log({ selectedKey });
+    // console.log({ selectedKey });
     searchPinfl(selectedKey);
   };
 
   //@ts-ignore
   const keys = useSelector((state) => state.espKey.keysList);
+
+  console.log(JSON.stringify(keys,null,2));
+  
 
   const computedKeys = useMemo(() => {
     if (!keys?.length) return [];
@@ -68,11 +71,10 @@ const LoginPage = () => {
     }));
   }, [keys]);
 
-  //@ts-ignore
-  const changeHandler = (option) => {
-    if (option.expired) return null;
-    setSelectedKey(option);
-  };
+  // const changeHandler = (option) => {
+  //   if (option.expired) return null;
+  //   setSelectedKey(option);
+  // };
 
   useEffect(() => {
     if (isAuth) {
@@ -90,18 +92,16 @@ const LoginPage = () => {
         return "https://kiber.uz/terms/uz.pdf";
     }
   };
-  // @ts-ignore
-  const searchPinfl = (key) => {
-    const token = localStorage.getItem("token");
+
+  const searchPinfl = (key: any) => {
+    const token: any = localStorage.getItem("token");
     console.log({ token });
-    // @ts-ignore
-    userService.searchUser(key.TIN, JSON.parse(token)).then((res) => {
-      setSelectedKey((prev) => {
+
+    userService.searchUser(key.TIN, JSON.parse(token)).then((res: any) => {
+      setSelectedKey((prev: any) => {
         return {
-          // @ts-ignore
           ...prev,
-          // @ts-ignore
-          PINFL: res.personalNum,
+          PINFL: res?.personalNum,
         };
       });
     });
@@ -129,7 +129,6 @@ const LoginPage = () => {
               }}
               onClick={() => {
                 setSelectedTab("0");
-                //@ts-ignore
                 setColor(false);
               }}
             >
@@ -153,7 +152,7 @@ const LoginPage = () => {
               }}
               onClick={() => {
                 setSelectedTab("1");
-                //@ts-ignore
+
                 setColor(true);
               }}
             >
@@ -176,11 +175,11 @@ const LoginPage = () => {
               <Autocomplete
                 sx={{ width: 430 }}
                 options={computedKeys}
-                //@ts-ignore
-                getOptionLabel={(option) => option.CN + "    " + option.TIN}
+                getOptionLabel={(option: any) =>
+                  option.CN + "    " + option.TIN
+                }
                 onChange={(_event, option) => {
                   console.log({ option });
-                  // @ts-ignore
                   setSelectedKey(option);
                 }}
                 value={selectedKey}
