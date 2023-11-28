@@ -1,68 +1,77 @@
 import {
+  Checkbox,
   FormControl,
+  FormControlLabel,
   InputLabel,
-  MenuItem,
   Select,
   TextField,
   Typography,
 } from "@mui/material";
 import { id } from "date-fns/locale";
-import { useTranslation } from "react-i18next";
-import FTextField from "../../../components/FormElements/FTextField2";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import FSelect from "../../../components/FormElements/FSelect";
+import BuyerFormSelect from "../../../components/FormElements/BuyerFormSelect";
+import FTextField from "../../../components/FormElements/FTextField2";
+import docService from "../../../services/docService";
 
 // @ts-ignore
 const BuyerForm = ({ formik, disabled, disableInput }) => {
   const { t } = useTranslation();
-  const [hasLot, setHasLot] = useState(false);
+  const [dataLot, setDataLot] = useState<any>("YX-D-");
   const [lot, setLot] = useState("");
-  const [lots, setLots] = useState([]);
+  const [lots, setLots] = useState<any>([]);
+  const [chackbox, setChackbox] = useState(false);
   // @ts-ignore
   const userData = useSelector((state) => state.auth.userData);
 
   const { values } = formik;
+
   const { buyer } = values;
-  useEffect(() => {
-    if (buyer.account.length === 26) {
-      setHasLot(true);
-    } else {
-      setHasLot(false);
-    }
-  }, [buyer]);
+  // useEffect(() => {
+  //   if (buyer.account.length === 26) {
+  //     setHasLot(true);
+  //   } else {
+  //     setHasLot(false);
+  //   }
+  // }, [buyer]);
 
   useEffect(() => {
     const fetchData = async () => {
       if (lot.length > 5) {
-        const response = await fetch(
-          `https://kiber.uz/api/investment?lang=ru&sellerTin=${userData.person.tin}&buyerTin=${formik.values.buyerTin}&objectId=${lot}`
-        );
-
-        const body = await response.json();
-        if (body.hasOwnProperty("lots")) {
-          // @ts-ignore
-          setLots((prev) => {
-            // @ts-ignore
-            let arr = [];
-            // @ts-ignore
-            body.lots.map((item) => {
-              let obj = {};
-              // @ts-ignore
-              obj.label = item.lotPrefix;
-              // @ts-ignore
-              obj.value = item.lotPrefix + item.lotNumber;
-              arr.push(obj);
-            });
-            // @ts-ignore
-            return arr;
+        try {
+          const res: any = await docService.getLotType({
+            buyerTin: `${(formik.values, "buyerTin")}`,
+            lotId: lot,
           });
+          setDataLot(res[0]?.prefix);
+
+          if (res) {
+            getLots(res[0]?.prefix);
+          }
+        } catch (error) {
+          console.log("=================Errpr===================");
+          console.log("error", error);
+          console.log("=================Error===================");
         }
       }
       // @ts-ignore
     };
     fetchData();
   }, [lot]);
+
+  const getLots = async (e: any) => {
+    try {
+      let res = await docService.getLot({
+        buyerTin: `${(formik.values, "buyerTin")}`,
+        lotId: `${e}${lot}`,
+      });
+      //@ts-ignoreø
+      setLots(res?.products);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
   return (
     <div style={{ flex: 1, visibility: disabled ? "hidden" : "visible" }}>
@@ -78,7 +87,25 @@ const BuyerForm = ({ formik, disabled, disableInput }) => {
           formik={formik}
           disabled={disabled}
         />
-        {hasLot && (
+        {!disableInput ? (
+          <div style={{ display: "flex", width: "35%", marginLeft: "10px" }}>
+            <FormControlLabel
+              sx={{ flex: "1" }}
+              control={
+                <Checkbox
+                  checked={chackbox}
+                  onChange={() => {
+                    setChackbox((a) => !a);
+                  }}
+                  name="excise"
+                />
+              }
+              label="Лот мавжуд"
+            />
+          </div>
+        ) : null}
+
+        {chackbox ? (
           <>
             <TextField
               name="Наименование инвестиционного ID"
@@ -87,17 +114,21 @@ const BuyerForm = ({ formik, disabled, disableInput }) => {
               fullWidth
               label="Наименование инвестиционного ID"
               // @ts-ignore
-              onChange={(e) => setLot(e.target.value)}
+              onChange={(e) => {
+                formik.setFieldValue("lotId", `${dataLot + e.target.value}`);
+                setLot(e.target.value);
+              }}
             />
-            <FSelect
+            <BuyerFormSelect
               label="Лот"
               width={"300px"}
+              name="lotIdType"
+              options={lots ? lots : []}
               formik={formik}
-              name="lotId"
-              options={lots}
             />
           </>
-        )}
+        ) : null}
+
         <Typography color="secondary" variant="h5" className="card-title">
           {t("company")}
         </Typography>

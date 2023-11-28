@@ -179,6 +179,7 @@ export let translationUz = {
   subscribe: "Imzolash",
   createContract: "Yangi shartnomani yaratish",
   tinPinfl: "STIR/JShShIR",
+  LotNo: "Lot raqami",
   name: "Nom",
   fizTin: "Jismoniy shaxsning JShShIR",
   fio: "FISh",

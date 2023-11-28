@@ -182,6 +182,7 @@ export let translationRu = {
   subscribe: "Подписать",
   createContract: "Создать новый контракт",
   tinPinfl: "ИНН/ПИНФЛ",
+  LotNo: "Лот №",
   name: "Название",
   fizTin: "ПИНФЛ физ. лица",
   fio: "ФИО",

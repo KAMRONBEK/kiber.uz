@@ -893,7 +893,7 @@ export const saveDocToDraft =
       const computedData = {
         Id: id,
         ...docData,
-        products: {productList: productList},
+        products: { productList: productList },
       };
 
       dispatch(loaderON("fullPageLoader"));
@@ -907,7 +907,7 @@ export const saveDocToDraft =
     } else {
       const computedData = {
         ...docData,
-        products: {productList: productList},
+        products: { productList: productList },
       };
 
       dispatch(loaderON("fullPageLoader"));

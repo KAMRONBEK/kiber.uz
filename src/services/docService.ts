@@ -36,6 +36,10 @@ const docService = {
   getEmpowermentData: (id) => reqGenerator.get(`/empowerment/detail/${id}`),
   // @ts-ignore
   getDocData: (id) => reqGenerator.get(`/doc/list/${id}`),
+  // getLot
+  getLot: (data: any) => reqGenerator.post("/lots", data),
+  // getLotType
+  getLotType: (data: any) => reqGenerator.post("/lots-type", data),
 };
 
 export default docService;

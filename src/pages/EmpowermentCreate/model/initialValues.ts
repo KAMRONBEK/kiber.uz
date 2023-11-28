@@ -18,6 +18,7 @@ export const initialValues = {
   },
   sellerTin: "",
   buyerTin: "",
+  lotID: "",
   buyer: {
     name: "",
     account: "",
