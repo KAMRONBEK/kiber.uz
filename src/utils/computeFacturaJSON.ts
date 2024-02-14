@@ -56,6 +56,7 @@ const computeFacturaJSON = (
 
     sellerTin: values.sellerTin,
     buyerTin: values.buyerTin,
+    lotId: values.lotId,
     // realizationPurpose: values.realizationPurpose,
     seller: {
       name: values.seller.name,
@@ -92,6 +93,7 @@ const computeFacturaJSON = (
       branchName: values.buyer.branchName,
       taxGap: values.buyer.taxGap,
       vatRegStatus: values.buyer.vatRegStatus,
+      lotId: values.buyer.lotId,
     },
 
     foreignCompany: {
@@ -169,7 +171,7 @@ const computeFacturaJSON = (
   let countLgota = 0;
   // @ts-ignore
   computedValues.productList.products.map((product) => {
-    if (product.lgotaId) {
+    if (product?.lgotaId) {
       countLgota++;
     } else {
       product.lgotaId = "";
@@ -183,7 +185,7 @@ const computeFacturaJSON = (
     computedValues.productList.hasLgota = false;
   }
 
-  console.log({ computedValues });
+  // console.log({ computedValues });
   return computedValues;
 };
 

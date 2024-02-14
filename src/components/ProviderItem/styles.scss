@@ -1,0 +1,29 @@
+.provider_item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .first_item {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    .first_item span {
+        font-size: 14px;
+        color: #000;
+        font-weight: 700;
+    }
+    .secund_item {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    .secund_item span {
+        font-size: 14px;
+        color: #676767;
+        font-weight: 500;
+    }
+}
