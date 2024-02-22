@@ -119,12 +119,11 @@ const ContractPreview = () => {
             {/* @ts-ignore */}
             <Header
                 // @ts-ignore
-                title={`Договор № ${
-                    docData?.contractDoc.contractNo || '---'
-                } от ${
+                title={`Договор № ${docData?.contractDoc.contractNo || '---'
+                    } от ${
                     // @ts-ignore
                     docData?.contractDoc.contractDate || '---'
-                }`}
+                    }`}
             ></Header>
 
             <div style={{ padding: '20px' }}>

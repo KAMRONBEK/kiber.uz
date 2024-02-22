@@ -10,7 +10,7 @@ import moment from "moment";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import { showAlert } from "../../redux/thunks/alert.thunk";
 import {
@@ -28,6 +28,7 @@ import ProductList from "./forms/ProductList";
 import SellerForm from "./forms/SellerForm";
 import { initialValues } from "./model/initialValues";
 import "./style.scss";
+import QRCode from "react-qr-code";
 const StyledCard = experimentalStyled(Card)(({ theme }) => ({
   display: "inline-block",
   padding: 15,
@@ -41,6 +42,7 @@ const FacturaCreate = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
+  const params = useParams();
   const [showDoc, setShowDoc] = useState(false);
   // @ts-ignore
   const { title } = useSelector((state) => state.settings.lang);
@@ -161,7 +163,7 @@ const FacturaCreate = () => {
     return correctionalFacturaTypes.includes(selectedFacturaType);
   }, [formik.values.facturaType]);
 
- 
+
 
   const searchBuyer = (tin: any) => {
     const token = localStorage.getItem("token");
@@ -203,8 +205,8 @@ const FacturaCreate = () => {
     setTempDisable(false);
   };
 
-  console.log(JSON.stringify(productList,null,2));
-  
+  console.log(JSON.stringify(productList, null, 2));
+
 
   const saveDocument = () => {
     // @ts-ignore
@@ -227,6 +229,9 @@ const FacturaCreate = () => {
       formik.setFieldValue("productList.hasLgota", true);
     }
   }, [formik.values.buyerTin]);
+
+  const qrCodeValue = `https://my3.soliq.uz/roaming-viewer/ru/document?id=${params.id}&filetype=1&tin=${location?.state}`;
+
   return (
     <form onSubmit={formik.handleSubmit}>
       <Header title={t("createInvoice")}>
@@ -282,8 +287,8 @@ const FacturaCreate = () => {
             {status
               ? t("docActive")
               : suspend
-              ? t("docTempNotActive")
-              : t("docNotActive")}
+                ? t("docTempNotActive")
+                : t("docNotActive")}
           </Typography>
           <Box style={{ display: "flex", gridGap: "50px" }}>
             <SellerForm formik={formik} />
@@ -324,12 +329,11 @@ const FacturaCreate = () => {
             {/* @ts-ignore */}
             <Header
               // @ts-ignore
-              title={`Фактура № ${
-                formik.values?.contractDoc.contractNo || "---"
-              } от ${
+              title={`Фактура № ${formik.values?.contractDoc?.contractNo || "---"
+                } от ${
                 // @ts-ignore
                 formik.values?.contractDoc.contractDate || "---"
-              }`}
+                }`}
             ></Header>
 
             <div style={{ padding: "20px" }}>
@@ -377,11 +381,22 @@ const FacturaCreate = () => {
                 </div>
               </StyledCard>
               <div className="containerFactura">
-                <div className="old-factura-block">
-                  {formik.values.facturaType} к ЭСФ №{" "}
-                  {formik.values.oldFacturaDoc.oldFacturaNo} от{" "}
-                  {formik.values.oldFacturaDoc.oldFacturaDate}
-                </div>
+                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: " 100%" }}>
+                  <div className="old-factura-block" >
+                    {formik.values.facturaType} к ЭСФ №{" "}
+                    {formik.values.oldFacturaDoc.oldFacturaNo} от{" "}
+                    {formik.values.oldFacturaDoc.oldFacturaDate}
+                  </div>
+                  <QRCode
+                    style={{
+                      height: '100px',
+                      maxWidth: '100px',
+                      width: '100px',
+                    }}
+                    value={qrCodeValue}
+                    viewBox={`0 0 256 256`}
+                  />
+                </Box>
                 <div className="title">
                   <p>Счет-фактура</p>
                   <p>
@@ -391,7 +406,7 @@ const FacturaCreate = () => {
                     )}
                   </p>
                   <p>
-                    к договору № {formik.values.contractDoc.contractNo} от{" "}
+                    к договору № {formik.values?.contractDoc.contractNo} от{" "}
                     {moment(formik.values.contractDoc.contractDate.$d).format(
                       "YYYY-MM-DD"
                     )}

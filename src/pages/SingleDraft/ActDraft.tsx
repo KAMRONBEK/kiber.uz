@@ -37,7 +37,7 @@ const ActDraft = ({ formik, setShowDoc, products }) => {
           moment(formik.values.contractDoc.contractDate).format(
             "HH:mm DD.MM.YYYY"
           ) || "---"
-        }`}
+          }`}
       ></Header>
 
       <div style={{ padding: "20px" }}>
@@ -143,7 +143,7 @@ const ActDraft = ({ formik, setShowDoc, products }) => {
           ))}
 
           <p>Стороны претензий друг к другу не имеют.</p>
-          <p>Стоимость принятой работы по акту составляет: {}</p>
+          <p>Стоимость принятой работы по акту составляет: { }</p>
 
           <div className="humans">
             <p>
